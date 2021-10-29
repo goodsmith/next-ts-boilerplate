@@ -1,7 +1,7 @@
 {
   "name": "next-ts-boilerplat",
   "version": "0.1.0",
-  "description": "Opinionated Next.js with Typescript boilerplate.",
+  "description": "Opinionated Next.js with Typescript boilerplate",
   "author": "matt <mat.bueno.ferreira@gmail.com>",
   "license": " MIT",
   "private": false,
@@ -9,7 +9,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint:ts": "yarn eslint ./src",
+    "lint:css": "yarn stylelint ./src",
+    "lint": "yarn lint:ts && yarn lint:css"
   },
   "dependencies": {
     "next": "12.0.1",
@@ -31,15 +33,39 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6",
     "postcss": "^8.3.11",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.4.1",
+    "pretty-quick": "^3.1.1",
     "stylelint": "^14.0.1",
     "stylelint-config-css-modules": "^2.3.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^23.0.0",
+    "stylelint-prettier": "^1.2.0",
     "typescript": "4.4.4",
     "typescript-plugin-css-modules": "^3.4.0"
+  },
+  "engines": {
+    "node": ">=14.15.3",
+    "yarn": ">=1.22.5"
+  },
+  "lint-staged": {
+    ".{tsx,.ts}": [
+      "pretty-quick --patter '**/*.tsx'",
+      "yarn lint:ts --fix"
+    ],
+    ".css": [
+      "yarn lint:css --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn lint"
+    }
   }
 }

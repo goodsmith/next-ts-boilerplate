@@ -6,3 +6,6 @@ LICENSE
 Procfile
 *.*
 !*.css
+src/styles/Home.module.css
+src/styles/globals.css
+src/styles/normalize.css
