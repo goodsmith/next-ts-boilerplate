@@ -1,0 +1,20 @@
+{
+  "plugins": [
+    "postcss-flexbugs-fixes",
+    [
+      "postcss-preset-env",
+      {
+        "stage": 3,
+        "importFrom": ["./src/styles/custom.ts", "./src/styles/variables.css"],
+        "autoprefixer": {
+          "flexbox": "no-2009"
+        },
+        "features": {
+          "nesting-rules": true,
+          "custom-media-queries": true,
+          "custom-properties": false
+        }
+      }
+    ]
+  ]
+}
